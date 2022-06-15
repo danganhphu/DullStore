@@ -1,0 +1,68 @@
+﻿@model DullStore.Models.SanPham
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Chi tiết</h2>
+<div>
+    <h4>SanPham</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ten)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ten)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.giaban)
+        </dt>
+
+        <dd>
+            @{
+                var giaBan = String.Format("{0:0,0}", Model.giaban);
+                @giaBan
+            } VNĐ
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.linkanh)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.linkanh)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.xuatxu)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.xuatxu)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DanhMuc.tendanhmuc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DanhMuc.tendanhmuc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Style.ten)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Style.ten)
+        </dd>
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Sửa", "Edit", new { id = Model.ma }) |
+    @Html.ActionLink("Trở về", "Product")
+</p>

@@ -1,0 +1,82 @@
+﻿@using DullStore.Models
+@using DullStore.DAO;
+
+@{
+    ViewBag.Title = "ChitietSP";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    SanPham sp = ViewBag.spct;
+    DanhMucDAO dm = new DanhMucDAO();
+    IQueryable<DanhMuc> listdm = dm.ListDanhMuc();
+    DanhMuc dmuc = new DanhMuc();
+    foreach (var item in listdm)
+    {
+        if (item.ma == sp.madanhmuc)
+        { dmuc = item; }
+    }
+
+    StyleDAO st = new StyleDAO();
+    IQueryable<Style> listst = st.ListDanhMuc();
+    Style sty = new Style();
+    foreach (var item in listst)
+    {
+        if (item.ma == sp.mastyle)
+        { sty = item; }
+    }
+}
+
+<div class="span9">
+    <ul class="breadcrumb">
+        <li><a href="/Home/Index">Trang chủ</a> <span class="divider">/</span></li>
+        <li><a href="/Home/Index">Items</a> <span class="divider">/</span></li>
+        <li class="active">Preview</li>
+    </ul>
+    <div class="well well-small">
+        <div class="row-fluid">
+            <div class="span5">
+                <div id="myCarousel" class="carousel slide cntr">
+                    <div class="carousel-inner">
+                        <div class="item active">
+                            <a href="#"> <img src="~/Content/Image/@sp.linkanh" alt="" style="width:100%"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="span7">
+                <h3>@sp.ten</h3>
+                <h3>
+                    Giá: @{
+                        var giaBan = String.Format("{0:0,0}", sp.giaban);
+                        @giaBan
+                    } VND
+                </h3>
+                <hr class="soft" />
+                <form class="form-horizontal qtyFrm">
+
+                    <a href="/ShoppingCart/AddGioHang?id=@sp.ma" class="shopBtn"><span class=" icon-shopping-cart"></span> Thêm vào giỏ hàng</a>
+                </form>
+            </div>
+        </div>
+        <hr class="softn clr" />
+
+        <ul id="productDetail" class="nav nav-tabs">
+            <li class="active"><a href="#home" data-toggle="tab">Thông tin điện thoại</a></li>
+        </ul>
+        <div id="myTabContent" class="tab-content tabWrapper">
+            <div class="tab-pane fade active in" id="home">
+                <table class="table table-striped">
+                    <tbody>
+
+                        <tr class="techSpecRow"><td class="techSpecTD1">Tên:</td><td class="techSpecTD2">@sp.ten</td></tr>
+                        <tr class="techSpecRow"><td class="techSpecTD1">Xuất xứ:</td><td class="techSpecTD2">@sp.xuatxu</td></tr>
+                        <tr class="techSpecRow"><td class="techSpecTD1">Loại:</td><td class="techSpecTD2">@sty.ten</td></tr>
+                        <tr class="techSpecRow"><td class="techSpecTD1">Hãng:</td><td class="techSpecTD2">@dmuc.tendanhmuc</td></tr>
+                    </tbody>
+                </table>
+                <p></p>
+            </div>
+        </div>
+    </div>
+</div>

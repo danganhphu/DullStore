@@ -1,0 +1,52 @@
+﻿@using DullStore.DAO
+@using DullStore.Models
+@using DullStore.Models.Bean
+@{
+    DanhMucDAO dm = new DanhMucDAO();
+    IQueryable<DanhMuc> itemdm = dm.ListDanhMuc();
+    SanPhamDAO sp = new SanPhamDAO();
+    IQueryable<SanPham> listsp = sp.ListSP();
+
+    ShoppingCart cart = (ShoppingCart)Session["cart"];
+    if (cart == null)
+    {
+        cart = new ShoppingCart();
+    }
+    //cart.AddItem(0, "", 0, 0, "");
+    Session["cart"] = cart;
+}
+<div id="sidebar" class="span3">
+    <div class="well well-small">
+        <ul class="nav nav-list">
+            @foreach (var item in itemdm)
+            {
+                <li><a href="/Home/SPTheoMuc?madm=@item.ma">@item.tendanhmuc</a></li>
+            }
+            <li style="border:0"> &nbsp;</li>
+            <li> <a class="totalInCart" href="/ShoppingCart/ListCart"><strong>Thành tiền  <span class="badge badge-warning pull-right" style="line-height:18px;">@cart.TongGiaTien()</span></strong></a></li>
+        </ul>
+    </div>
+
+    <div class="well well-small"><a href="#"><img src="~/Content/Image/fullbank.png" alt="payment method paypal"></a></div>
+
+    <br>
+    <br>
+    <ul class="nav nav-list promowrapper">
+        @foreach (var item in listsp)
+        {
+            if (item.ma == 6 || item.ma == 10 || item.ma == 4)
+            {
+                <li>
+                    <div class="thumbnail">
+                        <a class="zoomTool" href="/Home/ChitietSP?id=@item.ma" title="add to cart"><span class="icon-search"></span> Chi tiết</a>
+                        <img src="~/Content/Image/@item.linkanh" alt="bootstrap ecommerce templates">
+                        <div class="caption">
+                            <h4><a class="defaultBtn" href="/Home/ChitietSP?id=@item.ma">Xem</a> <span class="pull-right">@item.giaban</span></h4>
+                        </div>
+                    </div>
+                </li>
+                <li style="border:0"> &nbsp;</li>
+            }
+        }
+    </ul>
+</div>

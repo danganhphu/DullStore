@@ -1,0 +1,55 @@
+﻿@using DullStore.Models.Bean
+@using DullStore.Models
+
+@{
+    ViewBag.Title = "DatHang";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    ShoppingCart cart = (ShoppingCart)Session["cart"];
+    GioHang gh = (GioHang)ViewData["DonHang"];
+}
+@{
+    <h3>Ngày đặt hàng: @gh.ngaydathang</h3>
+    <br />
+    <div class="well well-small">
+        <hr class="soften" />
+        <table class="table table-bordered table-condensed">
+            <thead>
+                <tr>
+                    <th>Ảnh</th>
+                    <th>Tên sản phẩm</th>
+                    <th>Số lượng</th>
+                    <th>Tổng tiền</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in cart.listItem)
+                {
+                    <tr>
+                        <td><img width="100" src="/Content/Image/@item.linkanh" alt=""></td>
+                        <td>@item.name</td>
+                        <td>
+                            @item.soluong
+                        </td>
+                        <td>
+                            @{
+                                var tongGia = String.Format("{0:0,0}", item.TongGia());
+                                @tongGia
+                            } VNĐ
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+        <h2 style="font-family: 'Tw Cen MT'">
+            Tổng tiền là: @{
+                var thanhTien = String.Format("{0:0,0}", cart.TongGiaTien());
+                @thanhTien
+            } VNĐ
+        </h2>
+    </div>
+    <a href="/Home/Index" class="shopBtn btn-large"><span class="icon-arrow-left"></span> Quay lại trang chủ</a>
+}

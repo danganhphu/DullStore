@@ -1,0 +1,229 @@
+﻿@using DullStore.Models.Bean
+@{
+    Layout = null;
+}
+
+@{
+    ShoppingCart cart = (ShoppingCart)Session["cart"];
+    if (cart == null)
+    {
+        cart = new ShoppingCart();
+    }
+    //cart.AddItem(0, "", 0, 0, "");
+    Session["cart"] = cart;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dull Shop</title>
+    <link href="~/Content/MyStyle/assets/asset/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/MyStyle/assets/asset/font-awesome/css/font-awesome.css" rel="stylesheet" />
+    <link href="~/Content/MyStyle/style.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="~/Content/MyStyle/assets/ico/favicon.ico" />
+</head>
+
+<body style="background: linear-gradient(to right, hsl(200deg 19% 76%),hsl(191deg 58% 79%), hsl(154deg 44% 68%));">
+    <div class="navbar navbar-inverse navbar-fixed-top">
+        <div class="topNav">
+            <div class="container">
+                <div class="alignR">
+
+                    <a class="active" href="/Home/Index" style="margin-left: 0px;"> <span class="icon-home"></span> Trang chủ</a>
+
+                    <a href="~/ShoppingCart/ListCart" style="margin-left: 680px;">
+                        <span class="icon-shopping-cart" style="font-size: 1.1em"></span> @cart.TongSoLuong() (Sản phẩm) -
+                        <span class="badge badge-warning" style="font-size: 1.1em; background-color: #34495E ">
+                            @{
+                                var tongGiaTien = String.Format("{0:0,0}", cart.TongGiaTien());
+                                @tongGiaTien
+                            } VNĐ
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--
+    Lower Header Section
+    -->
+    <div class="container">
+        <div id="gototop"> </div>
+        <header id="header">
+            <div class="row">
+                <div class="span4">
+                    <h1>
+                        <a class="logo" href="/Home/Index">
+
+                            <img src="~/Content/Image/dullxin.png" alt="bootstrap sexy shop">
+                        </a>
+                    </h1>
+                </div>
+                <div class="span4">
+                </div>
+                <div class="span4 alignR">
+                    <p><br> <strong> Hỗ trợ (gọi cho tôi nhé) :  0862529564 </strong><br><br></p>
+                    <a href="~/ShoppingCart/ListCart"> <span class="btn btn-mini" style="font-size: 1em">[ @cart.TongSoLuong() ] <span class="icon-shopping-cart"></span></span></a>
+                    <span class="btn btn-warning btn-mini" style="font-size: 1em">
+                        @{
+                            var tgt = String.Format("{0:0,0}", cart.TongGiaTien());
+                            @tgt
+                        } VNĐ
+                    </span>
+                </div>
+            </div>
+        </header>
+
+        <!--
+        Navigation Bar Section
+        -->
+        <div class="navbar">
+            <div class="navbar-inner">
+                <div class="container">
+                    <a data-target=".nav-collapse" data-toggle="collapse" class="btn btn-navbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </a>
+                    <div class="nav-collapse">
+                        <ul class="nav">
+                            <li class=""><a href="~/Home/Index">Trang chủ	</a></li>
+                            <li class=""><a href="~/Home/KMProduct">Khuyến mãi</a></li>
+                            <li class=""><a href="~/Home/BCProduct">Bán chạy</a></li>
+                        </ul>
+                        @using (Html.BeginForm("TimKiem", "Home"))
+                        {
+                            <input type="text" name="tensp" placeholder="Tìm kiếm" class="search-query span2">
+
+                            <input type="submit" value="Tìm kiếm" class="shopBtn btn-large">
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--
+        Body Section
+        -->
+        <div class="row">
+            @RenderPage("_MenuLeft.cshtml")
+            <div class="span9">
+                <div class="well np">
+                    <div id="myCarousel" class="carousel slide homCar">
+                        <div class="carousel-inner">
+                            <div class="item">
+                                <img style="width:100%" src="~/Content/Image/Slide/nokia-g50.png" alt="bootstrap ecommerce templates">
+                                <div class="carousel-caption">
+                                </div>
+                            </div>
+                            <div class="item">
+                                <img style="width:100%" src="~/Content/Image/Slide/iphone-se-2021.png" alt="bootstrap ecommerce templates">
+                                <div class="carousel-caption">
+                                </div>
+                            </div>
+                            <div class="item">
+                                <img style="width:100%" src="~/Content/Image/Slide/dienthoai5g.png" alt="bootstrap ecommerce templates">
+                                <div class="carousel-caption">
+                                </div>
+                            </div>
+                            <div class="item active">
+                                <img style="width:100%" src="~/Content/Image/Slide/iphone_800x450.png" alt="bootstrap ecommerce templates">
+                                <div class="carousel-caption">
+                                </div>
+                            </div>
+                            <div class="item">
+                                <img style="width:100%" src="~/Content/Image/Slide/f15_800x450.png" alt="bootstrap templates">
+                                <div class="carousel-caption">
+                                </div>
+                            </div>
+                        </div>
+                        <a class="left carousel-control" href="#myCarousel" data-slide="prev" style=" background-color: #1ABC9C; border-radius: 50%">&lsaquo;</a>
+                        <a class="right carousel-control" href="#myCarousel" data-slide="next" style=" background-color: #1ABC9C; border-radius: 50%">&rsaquo;</a>
+                    </div>
+                </div>
+                <!--
+                New Products
+                -->
+
+                @RenderBody()
+                <!--
+                Featured Products
+                -->
+            </div>
+        </div>
+        <!--
+        Clients
+        -->
+        <section class="our_client">
+            <hr class="soften" />
+            <h4 class="title cntr"><span class="text">Hãng sản xuất</span></h4>
+            <hr class="soften" />
+            <div class="row">
+                <div class="span2">
+                    <a href="/Home/SPTheoMuc?madm=1"><img alt="" src="~/Content/Image/Logo/samsungLogo.jpg"></a>
+                </div>
+                <div class="span2">
+                    <a href="/Home/SPTheoMuc?madm=2"><img alt="" src="~/Content/Image/Logo/iphoneLogo.jpg"></a>
+                </div>
+                <div class="span2">
+                    <a href="/Home/SPTheoMuc?madm=3"><img alt="" src="~/Content/Image/Logo/xiaomiLogo.jpg"></a>
+                </div>
+                <div class="span2">
+                    <a href="/Home/SPTheoMuc?madm=4"><img alt="" src="~/Content/Image/Logo/vivoLogo.jpg"></a>
+                </div>
+                <div class="span2">
+                    <a href="/Home/SPTheoMuc?madm=5"><img alt="" src="~/Content/Image/Logo/nokiaLogo.jpg"></a>
+                </div>
+                <div class="span2">
+                    <a href="/Home/SPTheoMuc?madm=7"><img alt="" src="~/Content/Image/Logo/oppoLogo.jpg"></a>
+                </div>
+            </div>
+        </section>
+
+        <!--
+        Footer
+        -->
+        <footer class="footer" style="background-color: #34495E">
+            <div class="row-fluid">
+                <div class="span2">
+                    <h5>Giới thiệu về chúng tôi</h5>
+                    <a href="#">Giới thiệu Dull Store</a><br>
+                    <a href="#">Quy chế hoạt động</a><br>
+                    <a href="#">Địa chỉ</a><br>
+                    <a href="#">Giảm giá</a><br>
+                </div>
+                <div class="span2">
+                    <h5>Dành cho người mua</h5>
+                    <a href="#">Bảo vệ người mua</a><br>
+                    <a href="#"></a>Quy định đối với người mua<br>
+                    <a href="#">Giải quyết khiếu nại</a><br>
+                    <a href="#">Hướng dẫn người mua</a><br>
+                    <a href="#">Câu hỏi thường gặp</a><br>
+                </div>
+                <div class="span2">
+                    <h5>Dành cho người bán </h5>
+                    <a href="#">Quy định đối với nhân viên</a> <br>
+                    <a href="#">Chính sách bán hàng</a><br>
+                    <a href="#">Hệ thống tiêu chí kiểm duyệt</a><br>
+                    <a href="#">Các mức chế tài vi phạm</a><br>
+                </div>
+                <div class="span5">
+                    <h5>Copyright © 2022 by Phú</h5>
+                    <p>Địa chỉ:Số 02 Nguyễn Đình Chiểu, Tp.Nha Trang, Khánh Hòa</p>
+                    <p>Email: phuda@gmail.com</p>
+                </div>
+            </div>
+        </footer>
+    </div><!-- /container -->
+    @*<a href="#" class="gotop"><i class="icon-double-angle-up"></i></a>*@
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="~/Content/MyStyle/assets/js/jquery.js"></script>
+    <script src="~/Content/MyStyle/assets/js/bootstrap.min.js"></script>
+    <script src="~/Content/MyStyle/assets/js/jquery.easing-1.3.min.js"></script>
+    <script src="~/Content/MyStyle/assets/js/jquery.scrollTo-1.4.3.1-min.js"></script>
+    <script src="~/Content/MyStyle/assets/js/shop.js"></script>
+</body>
+</html>

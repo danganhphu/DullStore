@@ -1,0 +1,47 @@
+﻿@model IEnumerable<DullStore.Models.Style>
+@using DullStore.Models
+@using DullStore.DAO
+
+@{
+    ViewBag.Title = "List";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Loại điện thoại</h2>
+
+<p>
+    @Html.ActionLink("Thêm mới", "Add", null, new { @class = "btn btn-success" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ten)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ten)
+            </td>
+            <td>
+                @Html.ActionLink("Chỉnh sửa", "Edit", new { id = item.ma }, new { @class = "btn btn-info" }) |
+                @{
+                    DullShopEntities db = new DullShopEntities();
+                    SanPhamDAO sp = new SanPhamDAO();
+                    IQueryable<SanPham> list = sp.ListSPTL(item.ma);
+                    if (list.Count() == 0)
+                    {
+                        <a href="/QuanLyTheLoai/Delete?id=@item.ma" onclick="return confirm('Bạn có chắc chắn muốn xóa loại điện thoại này?');">Xóa</a>
+                    }
+                    else
+                    {
+                        <a href="/QuanLyTheLoai/Delete?id=@item.ma" onclick="return confirm('Bạn có chắc chắn muốn xóa loại điện thoại này?');" hidden="hidden">Xóa</a>
+                    }
+                }
+            </td>
+        </tr>
+    }
+</table>

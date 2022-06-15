@@ -1,0 +1,47 @@
+﻿@model IEnumerable<DullStore.Models.DanhMuc>
+@using DullStore.Models
+@using DullStore.DAO
+
+@{
+    ViewBag.Title = "Category";
+    Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Danh mục sản phẩm</h2>
+
+<p>
+    @Html.ActionLink("Thêm Danh mục mới", "Add", null, new { @class = "btn btn-success" })
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.tendanhmuc)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.tendanhmuc)
+            </td>
+            <td>
+                @Html.ActionLink("Chỉnh sửa", "Edit", new { id = item.ma }, new { @class = "btn btn-info" }) |
+                @{
+                    DullShopEntities db = new DullShopEntities();
+                    SanPhamDAO sp = new SanPhamDAO();
+                    IQueryable<SanPham> list = sp.ListSP(item.ma);
+                    if (list.Count() == 0)
+                    {
+                        <a href="/QuanLyDanhMuc/Delete?id=@item.ma" onclick="return confirm('Bạn có chắc chắn muốn xóa danh mục này?');">Xóa</a>
+                    }
+                    else
+                    {
+                        <a href="/QuanLyDanhMuc/Delete?id=@item.ma" onclick="return confirm('Bạn có chắc chắn muốn xóa danh mục này?');" hidden="hidden">Xóa</a>
+                    }
+                }
+            </td>
+        </tr>
+    }
+</table>
