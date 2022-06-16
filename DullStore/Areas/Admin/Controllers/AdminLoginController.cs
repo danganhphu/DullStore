@@ -12,28 +12,6 @@ namespace DullStore.Areas.Admin.Controllers
     public class AdminLoginController : Controller
     {
         // GET: Admin/AdminLogin
-        private void SetAlert(string message, string type)
-        {
-            TempData["AlertMessage"] = message;
-            switch (type)
-            {
-                case "success":
-                    TempData["AlertType"] = "alert-success";
-                    break;
-
-                case "warning":
-                    TempData["AlertType"] = "alert-warning";
-                    break;
-
-                case "error":
-                    TempData["AlertType"] = "alert-error";
-                    break;
-
-                default:
-                    TempData["AlertType"] = "";
-                    break;
-            }
-        }
 
         public ActionResult Login()
         {
