@@ -41,7 +41,14 @@
                         <a class="zoomTool" href="/Home/ChitietSP?id=@item.ma" title="add to cart"><span class="icon-search"></span> Chi tiết</a>
                         <img src="~/Content/Image/@item.linkanh" alt="bootstrap ecommerce templates">
                         <div class="caption">
-                            <h4><a class="defaultBtn" href="/Home/ChitietSP?id=@item.ma">Xem</a> <span class="pull-right">@item.giaban</span></h4>
+                            <h4>
+                                <a class="defaultBtn" href="/Home/ChitietSP?id=@item.ma" style="font-size: 15px;">Xem</a> <span class="pull-right" style="font-size: 15px; line-height: 34px;">
+                                    @{
+                                        var giaBan = String.Format("{0:0,0}", item.giaban);
+                                        @giaBan
+                                    } VNĐ
+                                </span>
+                            </h4>
                         </div>
                     </div>
                 </li>
