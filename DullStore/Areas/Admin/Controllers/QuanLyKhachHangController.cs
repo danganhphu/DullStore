@@ -54,5 +54,13 @@ namespace DullStore.Areas.Admin.Controllers
                 return View(khcs);
             }
         }
+
+        public ActionResult DeleteKH(int id)
+        {
+            KhachHang kh = db.KhachHang.Find(id);
+            db.KhachHang.Remove(kh);
+            db.SaveChanges();
+            return Redirect(Request.UrlReferrer.ToString());
+        }
     }
 }

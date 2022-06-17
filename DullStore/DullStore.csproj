@@ -2790,7 +2790,6 @@
     <Content Include="Areas\Admin\Views\QuanLyTheLoai\List.cshtml" />
     <Content Include="Areas\Admin\Views\QuanLyTheLoai\Add.cshtml" />
     <Content Include="Areas\Admin\Views\QuanLyTheLoai\Edit.cshtml" />
-    <Content Include="Areas\Admin\Views\QuanLyHoaDon\Delete.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

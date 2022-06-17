@@ -32,7 +32,7 @@
         <th>
             @Html.DisplayNameFor(model => model.First().mastyle)
         </th>
-        <th></th>
+        <th>Chức năng</th>
     </tr>
 
     @foreach (var item in Model)
@@ -48,7 +48,7 @@
                 } VNĐ
             </td>
             <td>
-                <div><img src="~/Content/Image/@item.linkanh)" height="99" width="150" /></div>
+                <div><img src="~/Content/Image/@item.linkanh" height="99" width="150" /></div>
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.xuatxu)
@@ -60,9 +60,9 @@
                 @Html.DisplayFor(modelItem => item.Style.ten)
             </td>
             <td>
-                @Html.ActionLink("Chỉnh sửa", "Edit", new { id = item.ma }, new { @class = "btn btn-info" }) |
-                @Html.ActionLink("Chi tiết", "Details", new { id = item.ma }, new { @class = "btn btn-warning" }) |
-                <button class="btn btn-danger"><a href="/QuanLySanPham/Delete?id=@item.ma" onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này?');" style="color: white; text-decoration: none">Xóa</a></button>
+                @Html.ActionLink("Chỉnh sửa", "Edit", new { id = item.ma }, new { @class = "btn btn-primary" })
+                @Html.ActionLink("Chi tiết", "Details", new { id = item.ma }, new { @class = "btn btn-warning" })
+                <a class="btn btn-danger" href="/QuanLySanPham/Delete?id=@item.ma" onclick="return confirm('Bạn có chắc chắn muốn xóa sản phẩm này?');" style="color: white; text-decoration: none" role="button">Xóa</a>
             </td>
         </tr>
     }

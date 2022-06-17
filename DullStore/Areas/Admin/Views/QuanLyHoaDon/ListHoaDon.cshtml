@@ -21,10 +21,10 @@
         <th>
             @Html.DisplayNameFor(model => model.ngaygiaohang)
         </th>
-        <th>
+        <th style="width:260px;">
             @Html.DisplayNameFor(model => model.tinhtranggiaohang)
         </th>
-        <th></th>
+        <th style="width:250px;">Chức năng</th>
     </tr>
 
     @foreach (var item in Model)
@@ -49,17 +49,17 @@
                 @{
                     if (item.tinhtranggiaohang == "Đang giao hàng")
                     {
-                        @Html.ActionLink("Cập nhật tình trạng giao hàng", "Edit", new { id = item.ma })
+                        @Html.ActionLink("Cập nhật", "Edit", new { id = item.ma }, new { @class = "btn btn-primary" })
                     }
                     else if (item.tinhtranggiaohang == "Đã giao hàng và khách hàng đã thanh toán đầy đủ ")
                     {
-                        @Html.ActionLink("Cập nhật tình trạng giao hàng", "Edit", new { id = item.ma, @hidden = "hidden" })
+                        @Html.ActionLink("Cập nhật", "Edit", new { id = item.ma, @hidden = "hidden" }, new { @class = "btn btn-primary" })
 
                     }
                 }
 
-                |@Html.ActionLink("Chi tiết hóa đơn", "Details", new { id = item.ma })
-                @*|@Html.ActionLink("Xóa", "Delete", new { id = item.ma })*@
+                @Html.ActionLink("Chi tiết", "Details", new { id = item.ma }, new { @class = "btn btn-info" })
+                <a class="btn btn-danger" href="/QuanLyHoaDon/DeleteHD?id=@item.ma" onclick="return confirm('Bạn có chắc chắn muốn xóa hóa đơn này?');" role="button">Xóa</a>
             </td>
         </tr>
     }

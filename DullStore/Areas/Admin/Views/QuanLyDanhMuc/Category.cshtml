@@ -10,7 +10,7 @@
 <h2>Danh mục sản phẩm</h2>
 
 <p>
-    @Html.ActionLink("Thêm Danh mục mới", "Add", null, new { @class = "btn btn-success" })
+    @Html.ActionLink("Thêm mới", "Add", null, new { @class = "btn btn-success" })
 </p>
 <table class="table">
     <tr>
@@ -27,14 +27,14 @@
                 @Html.DisplayFor(modelItem => item.tendanhmuc)
             </td>
             <td>
-                @Html.ActionLink("Chỉnh sửa", "Edit", new { id = item.ma }, new { @class = "btn btn-info" }) |
+                @Html.ActionLink("Chỉnh sửa", "Edit", new { id = item.ma }, new { @class = "btn btn-primary" })
                 @{
                     DullShopEntities db = new DullShopEntities();
                     SanPhamDAO sp = new SanPhamDAO();
                     IQueryable<SanPham> list = sp.ListSP(item.ma);
                     if (list.Count() == 0)
                     {
-                        <a href="/QuanLyDanhMuc/Delete?id=@item.ma" onclick="return confirm('Bạn có chắc chắn muốn xóa danh mục này?');">Xóa</a>
+                        <a class="btn btn-danger" href="/QuanLyDanhMuc/Delete?id=@item.ma" onclick="return confirm('Bạn có chắc chắn muốn xóa danh mục này?');">Xóa</a>
                     }
                     else
                     {

@@ -75,7 +75,7 @@
         <th>
             @Html.DisplayNameFor(model => model.dongia)
         </th>
-        @*<th></th>*@
+        <th>Chức năng</th>
     </tr>
 
     @foreach (var item in Model)
@@ -105,12 +105,12 @@
                     @donGia
                 } VNĐ
             </td>
-            @*<td>
-                    @Html.ActionLink("xóa", "DeleteCT", new { id = item.madt })
-                </td>*@
+            <td>
+                @Html.ActionLink("Xóa", "DeleteCT", new { id = item.magiohang }, new { @class = "btn btn-danger" })
+            </td>
         </tr>
     }
 </table>
 <div>
-    @Html.ActionLink("Trở lại", "ListHoaDon")
+    @Html.ActionLink("Trở lại", "ListHoaDon", null, new { @class = "btn btn-primary" })
 </div>

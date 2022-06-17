@@ -58,33 +58,36 @@ namespace DullStore.Areas.Admin.Controllers
             return View(listgh);
         }
 
-        //    public ActionResult DeleteCT(int? id)
-        //    {
-        //        ChiTietGioHang ctgh = db.ChiTietGioHang.Find(id);
-        //        db.ChiTietGioHang.Remove(ctgh);
-        //        db.SaveChanges();
-        //        return RedirectToAction("ListHoaDon");
-        //    }
+        public ActionResult DeleteCT(int? id)
+        {
+            ChiTietGioHang cthd = db.ChiTietGioHang.SingleOrDefault(x => x.magiohang == id);
+            if (cthd == null)
+            {
+                Response.StatusCode = 404;
+                return null;
+            }
+            else
+            {
+                db.ChiTietGioHang.Remove(cthd);
+                db.SaveChanges();
+            }
+            return RedirectToAction("ListHoaDon", "QuanLyHoaDon");
+        }
 
-        //    public ActionResult Delete(int? id)
-        //    {
-        //        GioHang gh = db.GioHang.Find(id);
-        //        if (gh == null)
-        //        {
-        //            return HttpNotFound();
-        //        }
-        //        return View(gh);
-        //    }
-
-        //    [HttpPost, ActionName("Delete")]
-        //    [ValidateAntiForgeryToken]
-        //    public ActionResult DeleteConfirmed(int? id)
-        //    {
-        //        GioHang gh = db.GioHang.Find(id);
-        //        db.GioHang.Remove(gh);
-        //        db.SaveChanges();
-        //        return RedirectToAction("ListHoaDon");
-        //    }
-        //}
+        public ActionResult DeleteHD(int? id)
+        {
+            GioHang gh = db.GioHang.SingleOrDefault(x => x.ma == id);
+            if (gh == null)
+            {
+                Response.StatusCode = 404;
+                return null;
+            }
+            else
+            {
+                db.GioHang.Remove(gh);
+                db.SaveChanges();
+            }
+            return Redirect(Request.UrlReferrer.ToString());
+        }
     }
 }
