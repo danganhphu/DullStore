@@ -19,7 +19,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dull Shop</title>
+    <title>Dull Store</title>
     <link href="~/Content/MyStyle/assets/asset/css/bootstrap.css" rel="stylesheet" />
     <link href="~/Content/MyStyle/assets/asset/font-awesome/css/font-awesome.css" rel="stylesheet" />
     <link href="~/Content/MyStyle/style.css" rel="stylesheet" />
@@ -33,7 +33,6 @@
                 <div class="alignR">
 
                     <a class="active" href="/Home/Index" style="margin-left: 0px;"> <span class="icon-home"></span> Trang chủ</a>
-
                     <a href="~/ShoppingCart/ListCart" style="margin-left: 680px;">
                         <span class="icon-shopping-cart" style="font-size: 1.1em"></span> @cart.TongSoLuong() (Sản phẩm) -
                         <span class="badge badge-warning" style="font-size: 1.1em; background-color: #34495E ">
@@ -67,13 +66,14 @@
                 </div>
                 <div class="span4 alignR">
                     <p><br> <strong> Hỗ trợ (gọi cho tôi nhé) :  0862529564 </strong><br><br></p>
-                    <a href="~/ShoppingCart/ListCart"> <span class="btn btn-mini" style="font-size: 1em">[ @cart.TongSoLuong() ] <span class="icon-shopping-cart"></span></span></a>
-                    <span class="btn btn-warning btn-mini" style="font-size: 1em">
+                    <a href="~/ShoppingCart/ListCart"> <span class="btn btn-mini" style="font-size: 1em; height: 30px;">[ @cart.TongSoLuong() ] <span class="icon-shopping-cart" style="line-height: 30px;"></span></span></a>
+                    <span class="btn btn-warning btn-mini" style="font-size: 1em; height: 30px; line-height: 30px;">
                         @{
                             var tgt = String.Format("{0:0,0}", cart.TongGiaTien());
                             @tgt
                         } VNĐ
                     </span>
+                    <a class="btn btn-success" href="~/Admin/AdminLogin/Login">Đăng nhập</a>
                 </div>
             </div>
         </header>
@@ -99,7 +99,7 @@
                         {
                             <input type="text" name="tensp" placeholder="Tìm kiếm" class="search-query span3" style="margin-top: 5px;">
 
-                            <input type="submit" value="Tìm kiếm" class="shopBtn btn-large" style="margin-top: 5px">
+                            <input type="submit" value="Tìm kiếm" class="shopBtn btn-large" style="margin-top: 5px; border-radius: 10px">
                         }
                     </div>
                 </div>
