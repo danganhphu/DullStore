@@ -9,6 +9,9 @@
 <table class="table">
     <tr>
         <th>
+            @Html.DisplayNameFor(model => model.ma)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.hoten)
         </th>
         <th>
@@ -20,12 +23,13 @@
         <th>
             @Html.DisplayNameFor(model => model.email)
         </th>
-        <th></th>
+        <th>Chức năng</th>
     </tr>
 
     @foreach (var item in Model)
     {
         <tr>
+            <td>@Html.DisplayFor(modelItem => item.ma)</td>
             <td>
                 @Html.DisplayFor(modelItem => item.hoten)
             </td>
@@ -39,7 +43,8 @@
                 @Html.DisplayFor(modelItem => item.email)
             </td>
             <td>
-                @Html.ActionLink("Cập nhật thông tin khách hàng", "Edit", new { id = item.ma })
+                @Html.ActionLink("Cập nhật", "Edit", new { id = item.ma }, new { @class = "btn btn-primary" })
+                @Html.ActionLink("Xóa", "DeleteKH", new { id = item.ma }, new { @class = "btn btn-danger" })
             </td>
         </tr>
     }

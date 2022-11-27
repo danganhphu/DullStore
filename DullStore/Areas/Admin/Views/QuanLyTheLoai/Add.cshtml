@@ -12,7 +12,6 @@
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
-        <h4>Thể loại</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
@@ -32,5 +31,5 @@
 }
 
 <div>
-    @Html.ActionLink("Trở lại", "List")
+    @Html.ActionLink("Trở lại", "List", null, new { @class = "btn btn-primary" })
 </div>

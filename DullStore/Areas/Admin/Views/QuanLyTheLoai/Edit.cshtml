@@ -5,7 +5,7 @@
     Layout = "~/Areas/Admin/Views/Shared/_LayoutAdmin.cshtml";
 }
 
-<h2>Chỉnh sửa loại điện thoại</h2>
+<h2>Chỉnh sửa</h2>
 
 @using (Html.BeginForm())
 {
@@ -34,5 +34,5 @@
 }
 
 <div>
-    @Html.ActionLink("Trở lại", "List")
+    @Html.ActionLink("Trở lại", "List", null, new { @class = "btn btn-primary" })
 </div>

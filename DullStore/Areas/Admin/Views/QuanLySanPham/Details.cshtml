@@ -7,7 +7,6 @@
 
 <h2>Chi tiết</h2>
 <div>
-    <h4>SanPham</h4>
     <hr />
     <dl class="dl-horizontal">
         <dt>
@@ -63,6 +62,6 @@
     </dl>
 </div>
 <p>
-    @Html.ActionLink("Sửa", "Edit", new { id = Model.ma }) |
-    @Html.ActionLink("Trở về", "Product")
+    @Html.ActionLink("Sửa", "Edit", new { id = Model.ma }, new { @class = "btn btn-primary" })
+    @Html.ActionLink("Trở về", "Product", null, new { @class = "btn btn-primary" })
 </p>

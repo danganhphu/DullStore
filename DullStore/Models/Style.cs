@@ -27,7 +27,7 @@ namespace DullStore.Models
         [Key]
         public int ma { get; set; }
 
-        [Display(Name = "Tên danh mục")]
+        [Display(Name = "Tên thể loại")]
         [Required(ErrorMessage = "Tên thể loại không được để trống")]
         [RegularExpression(@"^[ a-zA-ZẮẰẲẴẶĂẤẦẨẪẬÂÁÀÃẢẠĐẾỀỂỄỆÊÉÈẺẼẸÍÌỈĨỊỐỒỔỖỘÔỚỜỞỠỢƠÓÒÕỎỌỨỪỬỮỰƯÚÙỦŨỤÝỲỶỸỴắằẳẵặăấầẩẫậâáàãảạđếềểễệêéèẻẽẹíìỉĩịốồổỗộôớờởỡợơóòõỏọứừửữựưúùủũụýỳỷỹỵ]+$", ErrorMessage = "Không được sử dụng số và ký tự đặc biệt")]
         [StringLength(50)]

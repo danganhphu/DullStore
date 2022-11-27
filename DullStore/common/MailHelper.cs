@@ -12,13 +12,6 @@ namespace DullStore.common
     {
         public void SendMail(string toEmailAddress, string subject, string content)
         {
-            // Để Gmail cho phép SmtpClient kết nối đến server SMTP của nó với xác thực
-            //là tài khoản gmail của bạn, bạn cần thiết lập tài khoản email của bạn như sau:
-            //Vào địa chỉ https://myaccount.google.com/security  Ở menu trái chọn mục Bảo mật, sau đó tại mục Quyền truy cập
-            //của ứng dụng kém an toàn phải ở chế độ bật
-            //  Đồng thời tài khoản Gmail cũng cần bật IMAP
-            //Truy cập địa chỉ https://mail.google.com/mail/#settings/fwdandpop
-
             var fromEmailAddress = ConfigurationManager.AppSettings["FromEmailAddress"].ToString();
             var fromEmailDisplayName = ConfigurationManager.AppSettings["FromEmailDisplayName"].ToString();
             var fromEmailPassword = ConfigurationManager.AppSettings["FromEmailPassword"].ToString();
