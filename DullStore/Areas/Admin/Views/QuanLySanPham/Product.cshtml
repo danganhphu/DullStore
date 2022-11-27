@@ -48,7 +48,7 @@
                 } VNĐ
             </td>
             <td>
-                <div><img src="~/Content/Image/@item.linkanh" style="height: 115px; width: 150px; " /></div>
+                <div><img src="@Url.Content("~/Content/Image/"+item.linkanh)" style="height: 115px; width: 150px; " /></div>
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.xuatxu)
